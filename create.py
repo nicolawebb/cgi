@@ -11,11 +11,7 @@ def connect():
         if conn.is_connected():
             print('We are connected!')
             cursor = conn.cursor()
-            query = "INSERT INTO Student (Name, Age) VALUES (%s, %s)"
-            (Name, Age) = ("Nicola Webb", 26)
-            args = (Name, Age)
-
-            cursor.execute(query, args)
+            cursor.execute("CREATE TABLE Student (Name varchar(255), Age int)")
             conn.commit()
             cursor.close()
         
