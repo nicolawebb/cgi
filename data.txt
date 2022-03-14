@@ -1,0 +1,5 @@
+Course ID, Course name, Location, Number of Students 
+ABC123, Databases, E21, 20
+DEF456, Operating Systems, T17, 25
+GHI789, Web Development, S04, 10 
+JKL012, Microcontrollers, P10, 15
