@@ -56,7 +56,6 @@ def checkInput(file, name):
     userName = splitLine[0]
     #only checking name as serveral people can take the same module
     if name == userName:
-      print("not unique")
       unique = False
   return unique
 
@@ -68,7 +67,7 @@ def checkInput(file, name):
 
 #shows a blank form to let the user enter data again 
 def reloadForm():
-  print("<p style='color:red'>Please fill out the entire form</p>")
+  # print("<p style='color:red'>Please fill out the entire form</p>")
 
   #this is the same html as 'helloWorldForm'html'
   html = """

@@ -11,7 +11,7 @@ def connect():
         if conn.is_connected():
             print('We are connected!')
             cursor = conn.cursor()
-            query = "INSERT INTO Student (Name, Age) VALUES (%s, %s)"
+            query = "INSERT INTO Student (Name, CourseModule) VALUES (%s, %s)"
             (Name, Age) = ("Nicola Webb", 26)
             args = (Name, Age)
 
