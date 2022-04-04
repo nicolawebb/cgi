@@ -20,37 +20,7 @@ html = """
 print(html)
 
 
-if "Submit" in form:
-  html = """
-  <html>
-  <head>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-  <h1>Hello {name}. You're enrolled to study {module}. Enjoy!</h1>
-  </body>
-  </html>
-  """.format(
-          name=name,
-          module=module
-          )
-  print(html)
 
-elif "Display" in form:
-  html = """
-  <html>
-  <head>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-  <h1>Display!</h1>
-  </body>
-  </html>
-  """
-  print(html)
-else:
-    print("Huh?")
-  
 
 
 
@@ -69,14 +39,50 @@ def connect():
                                         password='password')
 
         if conn.is_connected():
+
+          if "Submit" in form:
             print('We are connected!')
             cursor = conn.cursor()
             query = "INSERT INTO Student (Name, CourseModule) VALUES (%s, %s)"
             args = (name, module)
-
             cursor.execute(query, args)
-            conn.commit()
-            cursor.close()
+
+            html = """
+            <body>
+            <h1>Hello {name}. You're enrolled to study {module}. Enjoy!</h1>
+            </body>
+            """.format(
+                    name=name,
+                    module=module
+                    )
+            print(html)
+            
+
+          elif "Display" in form:
+            cursor = conn.cursor() 
+            #select all data from the Student table
+            query = "SELECT * FROM Student"
+            cursor.execute(query)
+            #results contains the output of the query 
+            results = cursor.fetchall()
+            for row in results:
+                  name = row[0] #name is the first column in the table so we select the first part of the query
+                  module = row[1] #module is the second column so we select the second part of the query
+                  #display the name and module column data
+                  html = """
+                  <body>
+                  <p> {name} {module} </p>
+                  </body>
+                  """.format(
+                          name=name,
+                          module=module
+                          )
+                  print(html)
+          else:
+              print("Huh?")
+  
+          conn.commit()
+          cursor.close()
         
 
     except Error as e:
